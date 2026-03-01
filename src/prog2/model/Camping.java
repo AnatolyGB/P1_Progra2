@@ -1,5 +1,8 @@
 package prog2.model;
 
+import prog2.vista.ExcepcioReserva;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Camping implements InCamping{
@@ -52,9 +55,42 @@ public class Camping implements InCamping{
         allotjaments.add(bungalow);
     }
 
-    void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
+    public void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
                                int placesParquing, boolean terrassa, boolean tv, boolean aireFred,
                                boolean serveisExtra, String codiWifi){
-        
+        BungalowPremium bungalowPremium = new BungalowPremium(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred, serveisExtra, codiWifi);
+        allotjaments.add(bungalowPremium);
     }
+
+    public void afegirGlamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
+                        String material, boolean casaMascota){
+        Glamping glamping = new Glamping(nom_, idAllotjament_, mida, habitacions, placesPersones, material, casaMascota);
+        allotjaments.add(glamping);
+    }
+
+    public void afegirMobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
+                           boolean terrassaBarbacoa){
+        MobilHome mobilHome = new MobilHome(nom_, idAllotjament_, mida, habitacions, placesPersones, terrassaBarbacoa);
+        allotjaments.add(mobilHome);
+    }
+
+    public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
+        for (Client c : clients) {
+            if (dni_ == c.getDni()) {
+                for (Allotjament a : allotjaments) {
+                    if (id_ == a.getId()) {
+                        LlistaReserves.afegirReserva(a, c, dataEntrada, dataSortida);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    public int CalculAllotjamentsOperatius(){
+
+    }
+
+
 }
