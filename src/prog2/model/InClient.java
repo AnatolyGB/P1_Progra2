@@ -9,6 +9,4 @@ public interface InClient {
     public void setNom(String nom);
 
     public void setDni(String dni);
-
-
 }

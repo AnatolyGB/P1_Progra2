@@ -78,7 +78,7 @@ public class GestorCamping {
 
         nom = "Bungalow Oest";
         idAllotjament = "103B";
-        habitacions =2;
+        habitacions = 2;
         placesPersones = 4;
         placesParquing = 1;
         terrassa = true;
