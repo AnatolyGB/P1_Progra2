@@ -39,6 +39,7 @@ public class Camping implements InCamping{
         return getLlistaClients().size();
     }
 
+
     public void afegirClient(String nom, String dni){
         Client client = new Client(nom, dni);
         clients.add(client);
@@ -89,7 +90,8 @@ public class Camping implements InCamping{
     }
 
     public int CalculAllotjamentsOperatius(){
-
+        int i = 0;
+        for (Client c : clients) {}
     }
 
 
