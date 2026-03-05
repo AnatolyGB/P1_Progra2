@@ -14,8 +14,7 @@ public class Bungalow extends Allotjament{
     Bungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
              int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
 
-        this.nom = nom_;
-        this.idAllotjament = idAllotjament_;
+        super(nom_, idAllotjament_, 4, 7);
         this.mida = mida;
         this.habitacions = habitacions;
         this.placesPersones = placesPersones;
@@ -23,7 +22,6 @@ public class Bungalow extends Allotjament{
         this.terrassa = terrassa;
         this.tv = tv;
         this.aireFred = aireFred;
-
     }
 
     @Override

@@ -3,15 +3,16 @@ package prog2.model;
 public abstract class Allotjament implements InAllotjament {
     private String nom;
     private String Id;
-    private long EstadaMinimaAlta;
     private long EstadaMinimaBaixa;
+    private long EstadaMinimaAlta;
 
 
-    public Allotjament(String nom, String Id, long EstadaMinimaAlta, long EstadaMinimaBaixa) {
+
+    public Allotjament(String nom, String Id, long EstadaMinimaBaixa, long EstadaMinimaAlta) {
         this.nom = nom;
         this.Id = Id;
-        this.EstadaMinimaAlta = EstadaMinimaAlta;
         this.EstadaMinimaBaixa = EstadaMinimaBaixa;
+        this.EstadaMinimaAlta = EstadaMinimaAlta;
     }
 
     public String getNom() {
@@ -32,14 +33,13 @@ public abstract class Allotjament implements InAllotjament {
 
     public long getEstadaMinima(Temp temp) {
         if (temp == Temp.ALTA) {
-            return EstadaMinimaAlta;
+            return EstadaMinima;
         } else {
-            return EstadaMinimaBaixa;
+            return EstadaMinima;
         }
     }
 
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_) {
-
     }
 
     public abstract boolean correcteFuncionament();

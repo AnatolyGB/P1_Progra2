@@ -36,10 +36,12 @@ public class Camping implements InCamping{
     }
 
     public int getNumReserves(){
-        return getLlistaClients().size();
+        return getLlistaReserves().size();
     }
 
-
+    public int getNumClients(){
+        return getLlistaClients().size();
+    }
     public void afegirClient(String nom, String dni){
         Client client = new Client(nom, dni);
         clients.add(client);
@@ -90,8 +92,7 @@ public class Camping implements InCamping{
     }
 
     public int CalculAllotjamentsOperatius(){
-        int i = 0;
-        for (Client c : clients) {}
+    return 0;
     }
 
 
