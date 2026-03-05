@@ -1,6 +1,6 @@
 package prog2.model;
 
-public class Bungalow extends Allotjament{
+public class Bungalow extends Casa{
     private String nom;
     private String idAllotjament;
     private String mida;
@@ -14,10 +14,7 @@ public class Bungalow extends Allotjament{
     Bungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
              int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
 
-        super(nom_, idAllotjament_, 4, 7);
-        this.mida = mida;
-        this.habitacions = habitacions;
-        this.placesPersones = placesPersones;
+        super(nom_, idAllotjament_, mida, habitacions, placesPersones, 4, 7);
         this.placesParquing = placesParquing;
         this.terrassa = terrassa;
         this.tv = tv;
@@ -25,7 +22,13 @@ public class Bungalow extends Allotjament{
     }
 
     @Override
+    public String toString(){
+        return super.toString() + ". Bungalow{ Places de Parquing = " + placesParquing + " Terrassa = " + terrassa +
+                " TV = " + tv + " Aire fred = " + aireFred + "}";
+    }
+
+    @Override
     public boolean correcteFuncionament() {
-        return false;
+        return aireFred;
     }
 }

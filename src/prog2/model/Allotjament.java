@@ -6,8 +6,6 @@ public abstract class Allotjament implements InAllotjament {
     private long EstadaMinimaBaixa;
     private long EstadaMinimaAlta;
 
-
-
     public Allotjament(String nom, String Id, long EstadaMinimaBaixa, long EstadaMinimaAlta) {
         this.nom = nom;
         this.Id = Id;
@@ -33,16 +31,20 @@ public abstract class Allotjament implements InAllotjament {
 
     public long getEstadaMinima(Temp temp) {
         if (temp == Temp.ALTA) {
-            return EstadaMinima;
+            return EstadaMinimaAlta;
         } else {
-            return EstadaMinima;
+            return EstadaMinimaBaixa;
         }
     }
 
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_) {
+        this.EstadaMinimaAlta = estadaMinimaALTA_;
+        this.EstadaMinimaBaixa = estadaMinimaBAIXA_;
+    }
+
+    public String toString(){
+        return "Nom = " + nom + ", Id = " + Id + ", estada mínima en temp ALTA: " + EstadaMinimaBaixa + ",estada mínima en temp BAIXA: " + EstadaMinimaAlta;
     }
 
     public abstract boolean correcteFuncionament();
-
-
 }

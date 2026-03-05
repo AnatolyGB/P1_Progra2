@@ -79,9 +79,9 @@ public class Camping implements InCamping{
 
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
         for (Client c : clients) {
-            if (dni_ == c.getDni()) {
+            if (dni_.equals(c.getDni())) {
                 for (Allotjament a : allotjaments) {
-                    if (id_ == a.getId()) {
+                    if (id_.equals(a.getId())) {
                         LlistaReserves.afegirReserva(a, c, dataEntrada, dataSortida);
                         break;
                     }
@@ -90,10 +90,11 @@ public class Camping implements InCamping{
             }
         }
     }
-
-    public int CalculAllotjamentsOperatius(){
-    return 0;
+    public int calculAllotjamentsOperatius(){
+        return 0;
     }
 
-
+    public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp){
+        return null;
+    }
 }

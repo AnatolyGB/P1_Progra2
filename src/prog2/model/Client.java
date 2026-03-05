@@ -24,4 +24,8 @@ public class Client implements InClient{
     public void setDni(String dni){
         this.dni = dni;
     }
+
+    public String toString(){
+        return "Client{" + "nom=" + nom + ", dni=" + dni + '}';
+    }
 }

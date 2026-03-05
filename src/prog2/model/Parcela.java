@@ -12,7 +12,12 @@ public class Parcela extends Allotjament{
     }
 
     @Override
+    public String toString(){
+        return super.toString() + ". Parcela{ Mida = " + metres + ", Connexio elèctrica = " + connexioElectrica + "}";
+    }
+
+    @Override
     public boolean correcteFuncionament() {
-        return false;
+        return connexioElectrica;
     }
 }
