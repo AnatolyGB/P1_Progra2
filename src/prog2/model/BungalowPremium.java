@@ -1,15 +1,6 @@
 package prog2.model;
 
 public class BungalowPremium extends Bungalow{
-    private String nom;
-    String idAllotjament;
-    String mida;
-    int habitacions;
-    int placesPersones;
-    int placesParquing;
-    boolean terrassa;
-    boolean tv;
-    boolean aireFred;
     boolean serveisExtra;
     String codiWifi;
 
@@ -22,10 +13,11 @@ public class BungalowPremium extends Bungalow{
         this.codiWifi = codiWifi;
     }
 
+
     @Override
     public String toString(){
         return super.toString() + "A més és premium{ Serveis = " + serveisExtra + ", Codi Wifi =  " + codiWifi + "}.";
     }
     @Override
-    public boolean correcteFuncionament() { return (aireFred && codiWifi.length() > 7 && codiWifi.length() < 17); }
+    public boolean correcteFuncionament() { return (super.isAireFred() && codiWifi.length() > 7 && codiWifi.length() < 17); }
 }

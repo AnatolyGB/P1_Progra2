@@ -1,11 +1,6 @@
 package prog2.model;
 
 public class MobilHome extends Casa {
-    private String nom_;
-    private String idAllotjament_;
-    private String mida;
-    private int habitacions;
-    private int placesPersones;
     private boolean terrassaBarbacoa;
 
     MobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,

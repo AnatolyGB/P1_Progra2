@@ -1,18 +1,16 @@
 package prog2.model;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
-public class Reserva {
+public class Reserva implements InReserva{
     private Allotjament allotjament;
     private Client client;
     private LocalDate dataEntrada;
     private LocalDate dataSortida;
-    private long estada = ChronoUnit.DAYS.between(dataEntrada, dataSortida);
 
-    public Reserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida){
-        Allotjament.setId(id_);
-        Client.setDni(dni_);
+    public Reserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida){
+        this.client = client;
+        this.allotjament = allotjament;
         this.dataEntrada = dataEntrada;
         this.dataSortida = dataSortida;
     }

@@ -6,13 +6,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Camping implements InCamping{
-
     private String nom;
     private ArrayList<Allotjament> allotjaments;
     private ArrayList<Client> clients;
+    private LlistaReserves llistaReserves;
 
-    public Camping(String nom){
+    public Camping(String nom, ArrayList<Allotjament> allotjaments, ArrayList<Client> clients, LlistaReserves llistaReserves){
         this.nom = nom;
+        this.allotjaments = allotjaments;
+        this.clients = clients;
+        this.llistaReserves = llistaReserves;
     }
 
     public String getNom(){
@@ -20,7 +23,7 @@ public class Camping implements InCamping{
     }
 
     public LlistaReserves getLlistaReserves(){
-        return new LlistaReserves();
+        return llistaReserves;
     }
 
     public ArrayList<Allotjament> getLlistaAllotjaments(){
