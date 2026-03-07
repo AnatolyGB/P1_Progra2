@@ -33,7 +33,7 @@ public class ClientTest {
 
     @Test
     void testToString() {
-        String esperat = "Anna amb DNI: 12345678A. ";
+        String esperat = "Anna amb DNI: 12345678A.";
         assertEquals(esperat, client.toString());
     }
 }

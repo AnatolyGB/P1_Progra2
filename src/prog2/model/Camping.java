@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Camping implements InCamping{
     private final String nom;
-    private ArrayList<Allotjament> allotjaments;
-    private ArrayList<Client> clients;
-    private LlistaReserves llistaReserves;
+    private ArrayList<Allotjament> allotjaments = new ArrayList<>();
+    private ArrayList<Client> clients = new ArrayList<>();
+    private LlistaReserves llistaReserves = new LlistaReserves();
 
     public Camping(String nom){
         this.nom = nom;
@@ -79,25 +79,69 @@ public class Camping implements InCamping{
     }
 
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
-        int i = 0;
-        while (!clients.get(i).getDni().equals(dni_) || i >= getNumClients()){
-            i++;
-        }
-        int k = 0;
-        while (!allotjaments.get(k).getId().equals(id_) || i >= getNumReserves()){
-            k++;
-        }
-        if (clients.get(i).getDni().equals(dni_) && allotjaments.get(k).getId().equals(id_)){
-            Reserva reserva = new Reserva(allotjaments.get(k), clients.get(i), dataEntrada, dataSortida);
-        }else{
-            throw new ExcepcioReserva("L'allotjament o el client no existeixen.");
-        }
+        Allotjament allotjament = buscarAllotjament(id_);
+        Client client = buscarClient(dni_);
+        llistaReserves.afegirReserva(allotjament, client, dataEntrada, dataSortida);
     }
     public int calculAllotjamentsOperatius(){
-        return 0;
+        int allotjamentsOperatius = 0;
+        for (Allotjament a: allotjaments){
+            if (a.correcteFuncionament()){
+                allotjamentsOperatius++;
+            }
+        }
+        return allotjamentsOperatius;
     }
 
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp){
-        return null;
+        long estadaMinima = 6767;
+        int k = 0;
+        for (int i = 0; i < allotjaments.size(); i++) {
+            if (allotjaments.get(i).getEstadaMinima(temp) <= estadaMinima){
+                estadaMinima = allotjaments.get(i).getEstadaMinima(temp);
+                k = i;
+            }
+        }
+        return allotjaments.get(k);
+    }
+
+    public Allotjament buscarAllotjament(String id_) throws ExcepcioReserva{
+        for (Allotjament a : allotjaments) {
+            if (a.getId().equals(id_)) {
+                return a;
+            }
+        }
+        throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
+    }
+
+    public Client buscarClient(String dni_) throws ExcepcioReserva{
+        for (Client c: clients){
+            if (c.getDni().equals(dni_)){
+                return c;
+            }
+        }
+        throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
+    }
+
+    public static InAllotjament.Temp getTemporada(LocalDate data){
+        int dia = data.getDayOfMonth();
+        int mes = data.getMonthValue();
+        if (mes < 3 || mes > 9){
+            return InAllotjament.Temp.BAIXA;
+        }else if (mes == 3){
+            if (dia < 21){
+                return InAllotjament.Temp.BAIXA;
+            }else{
+                return InAllotjament.Temp.ALTA;
+            }
+        }else if (mes == 9){
+            if (dia < 21){
+                return InAllotjament.Temp.ALTA;
+            }else{
+                return InAllotjament.Temp.BAIXA;
+            }
+        }else{
+            return InAllotjament.Temp.ALTA;
+        }
     }
 }

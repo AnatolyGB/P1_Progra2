@@ -131,8 +131,8 @@ public interface InCamping {
     int calculAllotjamentsOperatius();
 
     /**
-     * Cerca i retorna l'allotjament amb estada mínima de la temporada alta més curta.
-     * @return l'allotjament amb estada mínima de la temporada baixa més curta.
+     * Cerca i retorna l'allotjament amb estada mínima de la temporada alta/baixa més curta.
+     * @return l'allotjament amb estada mínima de la temporada alta/baixa més curta.
      */
     Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp);
 

@@ -27,7 +27,6 @@ public class ReservaTest {
 
         // Creem la reserva amb els objectes creats
        reserva = new Reserva(allotjament, client, dataEntrada, dataSortida);
-
     }
 
     @Test

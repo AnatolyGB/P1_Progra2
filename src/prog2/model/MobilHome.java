@@ -20,7 +20,7 @@ public class MobilHome extends Casa {
 
     @Override
     public String toString() {
-        return super.toString() + ". MobilHome{Terrassa amb barbacoa = " + terrassaBarbacoa + "}.";
+        return super.toString();
     }
 
     @Override

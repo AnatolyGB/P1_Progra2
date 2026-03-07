@@ -50,8 +50,7 @@ public class Bungalow extends Casa{
 
     @Override
     public String toString(){
-        return super.toString() + ". Bungalow{ Places de Parquing = " + placesParquing + " Terrassa = " + terrassa +
-                " TV = " + tv + " Aire fred = " + aireFred + "}";
+        return super.toString();
     }
 
     @Override

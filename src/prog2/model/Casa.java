@@ -37,7 +37,7 @@ public abstract class Casa extends Allotjament{
     }
 
     @Override
-    public String toString(){
-        return super.toString() + ". Casa{mida = " + mida + ",habitacions = " + habitacions + ",placesPersones = " + placesPersones;
+    public String toString() {
+        return super.toString();
     }
 }

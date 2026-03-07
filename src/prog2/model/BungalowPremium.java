@@ -16,7 +16,7 @@ public class BungalowPremium extends Bungalow{
 
     @Override
     public String toString(){
-        return super.toString() + "A més és premium{ Serveis = " + serveisExtra + ", Codi Wifi =  " + codiWifi + "}.";
+        return super.toString();
     }
     @Override
     public boolean correcteFuncionament() { return (super.isAireFred() && codiWifi.length() > 7 && codiWifi.length() < 17); }

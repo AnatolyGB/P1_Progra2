@@ -224,5 +224,4 @@ public class GestorCamping {
         // Per completar
         
     }
-    
 }
