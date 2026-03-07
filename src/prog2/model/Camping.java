@@ -6,16 +6,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Camping implements InCamping{
-    private String nom;
+    private final String nom;
     private ArrayList<Allotjament> allotjaments;
     private ArrayList<Client> clients;
     private LlistaReserves llistaReserves;
 
-    public Camping(String nom, ArrayList<Allotjament> allotjaments, ArrayList<Client> clients, LlistaReserves llistaReserves){
+    public Camping(String nom){
         this.nom = nom;
-        this.allotjaments = allotjaments;
-        this.clients = clients;
-        this.llistaReserves = llistaReserves;
     }
 
     public String getNom(){
@@ -39,12 +36,13 @@ public class Camping implements InCamping{
     }
 
     public int getNumReserves(){
-        return getLlistaReserves().size();
+        return getLlistaReserves().getNumReserves();
     }
 
     public int getNumClients(){
         return getLlistaClients().size();
     }
+
     public void afegirClient(String nom, String dni){
         Client client = new Client(nom, dni);
         clients.add(client);
@@ -81,16 +79,18 @@ public class Camping implements InCamping{
     }
 
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
-        for (Client c : clients) {
-            if (dni_.equals(c.getDni())) {
-                for (Allotjament a : allotjaments) {
-                    if (id_.equals(a.getId())) {
-                        LlistaReserves.afegirReserva(a, c, dataEntrada, dataSortida);
-                        break;
-                    }
-                }
-                break;
-            }
+        int i = 0;
+        while (!clients.get(i).getDni().equals(dni_) || i >= getNumClients()){
+            i++;
+        }
+        int k = 0;
+        while (!allotjaments.get(k).getId().equals(id_) || i >= getNumReserves()){
+            k++;
+        }
+        if (clients.get(i).getDni().equals(dni_) && allotjaments.get(k).getId().equals(id_)){
+            Reserva reserva = new Reserva(allotjaments.get(k), clients.get(i), dataEntrada, dataSortida);
+        }else{
+            throw new ExcepcioReserva("L'allotjament o el client no existeixen.");
         }
     }
     public int calculAllotjamentsOperatius(){
