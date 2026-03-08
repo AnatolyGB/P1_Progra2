@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class LlistaReserves implements InLlistaReserves {
+public class  LlistaReserves implements InLlistaReserves {
     private ArrayList<Reserva> llistaReserves = new ArrayList<>();
 
     public ArrayList<Reserva> getLlistaReserves() {
@@ -58,10 +58,16 @@ public class LlistaReserves implements InLlistaReserves {
 
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
         Reserva reserva = new Reserva(allotjament, client, dataEntrada, dataSortida);
-        if (allotjamentDisponible(allotjament, dataEntrada, dataSortida) && isEstadaMinima(allotjament, dataEntrada, dataSortida)) {
-            llistaReserves.add(reserva);
+        if (allotjamentDisponible(allotjament, dataEntrada, dataSortida)){
+            if (isEstadaMinima(allotjament, dataEntrada, dataSortida)){
+                llistaReserves.add(reserva);
+            }else{
+                throw new ExcepcioReserva("Les dates solicitades pel client " + client.getNom() + " amb DNI:" + client.getDni() +
+                        " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId() + ".");
+            }
         }else{
-            throw new ExcepcioReserva("L'allotjament no està disponible o no assoleixes l'estada mínima.");
+            throw new ExcepcioReserva("L'allotjament amb identificador " + allotjament.getId() + " no està disponible en la data demanada "
+                    + dataEntrada + " pel client  " + client.getNom() + " amb DNI: " + client.getDni() + ".");
         }
     }
 

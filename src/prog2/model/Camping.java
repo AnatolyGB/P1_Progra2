@@ -83,6 +83,7 @@ public class Camping implements InCamping{
         Client client = buscarClient(dni_);
         llistaReserves.afegirReserva(allotjament, client, dataEntrada, dataSortida);
     }
+
     public int calculAllotjamentsOperatius(){
         int allotjamentsOperatius = 0;
         for (Allotjament a: allotjaments){
