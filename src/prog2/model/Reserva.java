@@ -4,22 +4,22 @@ import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
 
-public class Reserva implements InReserva{
+public class Reserva implements InReserva{  // Classe reserva per a crear objectes que siguin reserves amb uns mètodes associats.
     private Allotjament allotjament;
     private Client client;
     private LocalDate dataEntrada;
     private LocalDate dataSortida;
 
-    public Reserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
+    public Reserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {  // El constructor
         this.client = client;
         this.allotjament = allotjament;
         this.dataEntrada = dataEntrada;
         this.dataSortida = dataSortida;
-        if (dataSortida.isBefore(dataEntrada)) {
+        if (dataSortida.isBefore(dataEntrada)) {   // Si la data de sortida és anterior a la d'entrada llença una excepció.
             throw new ExcepcioReserva("La data de sortida no pot ser abans de la data d'entrada");
         }
     }
-    public Allotjament getAllotjament_(){
+    public Allotjament getAllotjament_(){  // Getters i setters.
         return allotjament;
     }
 

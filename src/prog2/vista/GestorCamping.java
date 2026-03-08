@@ -16,19 +16,23 @@ public class GestorCamping {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ExcepcioReserva {
+    public static void main(String[] args){
 
         Camping campingMar = new Camping("Camping del Mar");
 
         omplirDadesModel(campingMar);
-        
-        ferReserves(campingMar);
 
-        System.out.println("El número total d'allotjaments del Càmping és " + campingMar.getNumAllotjaments() +
-                " dels quals " + campingMar.calculAllotjamentsOperatius() + " allotjaments estan operatius.");
+        try {                             // Aquí atrapo l'excepció llançada per "ferReserves"
+            ferReserves(campingMar);
+        }catch(ExcepcioReserva e){
+            System.out.println(e.getMessage());
+        }finally {                              // Després el finally, s'assegura que la resta de main s'executi sempre.
+            System.out.println("El número total d'allotjaments del Càmping és " + campingMar.getNumAllotjaments() +
+                    " dels quals " + campingMar.calculAllotjamentsOperatius() + " allotjaments estan operatius.");
 
-        System.out.println("L'allotjament amb estada mínima de la temporada alta més curta és el següent: "
-                + campingMar.getAllotjamentEstadaMesCurta(InAllotjament.Temp.ALTA).getNom());
+            System.out.println("L'allotjament amb estada mínima de la temporada alta més curta és el següent: "
+                    + campingMar.getAllotjamentEstadaMesCurta(InAllotjament.Temp.ALTA).getNom());
+        }
     }
 
     /**
@@ -183,7 +187,7 @@ public class GestorCamping {
      * Mètode per fer reserves d'allotjaments.
      * @param camping
      */
-    private static void ferReserves(Camping camping) throws ExcepcioReserva {
+    private static void ferReserves(Camping camping) throws ExcepcioReserva {  // Creo reserves de prova, al executar-ho llença un error perquè intento reservar un allotjament en una data on ja està reservat.
 
         String idAllotjament, dni;
         idAllotjament = "100P";

@@ -6,18 +6,18 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class  LlistaReserves implements InLlistaReserves {
+public class LlistaReserves implements InLlistaReserves {   // Una classe que permet crear llistes de reserves amb mètodes associats.
     private ArrayList<Reserva> llistaReserves = new ArrayList<>();
 
-    public ArrayList<Reserva> getLlistaReserves() {
+    public ArrayList<Reserva> getLlistaReserves() {  // Retorna la llista de reserves.
         return llistaReserves;
     }
 
-    public void setLlistaReserves(ArrayList<Reserva> LlistaReserves) {
+    public void setLlistaReserves(ArrayList<Reserva> LlistaReserves) {  // Setter de la llista.
         this.llistaReserves = LlistaReserves;
     }
 
-    public boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {
+    public boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {  // Comprova si un allotjament està disponible donades unes dates, iterant sobre la llista d'allotjaments.
         boolean allotjamentDisponible = true;
         for (Reserva reserva : this.llistaReserves) {
             if (allotjament.getId().equals(reserva.getAllotjament_().getId())) {
@@ -31,7 +31,7 @@ public class  LlistaReserves implements InLlistaReserves {
         return allotjamentDisponible;
     }
 
-    public boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
+    public boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){  // Comprova si la reserva supera l'estada mínima.
         long estada = ChronoUnit.DAYS.between(dataEntrada, dataSortida);
         int dia = dataEntrada.getDayOfMonth();
         int mes = dataEntrada.getMonthValue();
@@ -56,7 +56,7 @@ public class  LlistaReserves implements InLlistaReserves {
         return (estadaMinima <= estada);
     }
 
-    public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
+    public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{ // Utilitzant els anteriors mètodes, comprova si pot afegir una reserva, i si pot, ho fa. Si no, llença una excepció.
         Reserva reserva = new Reserva(allotjament, client, dataEntrada, dataSortida);
         if (allotjamentDisponible(allotjament, dataEntrada, dataSortida)){
             if (isEstadaMinima(allotjament, dataEntrada, dataSortida)){
@@ -71,7 +71,7 @@ public class  LlistaReserves implements InLlistaReserves {
         }
     }
 
-    public int getNumReserves(){
+    public int getNumReserves(){  // Torna el número total de reserves.
         return llistaReserves.size();
     }
 }

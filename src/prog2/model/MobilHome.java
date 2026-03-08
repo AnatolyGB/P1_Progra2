@@ -1,16 +1,16 @@
 package prog2.model;
 
-public class MobilHome extends Casa {
+public class MobilHome extends Casa {  // Un altre tipus de casa, i per tant, d'allotjament.
     private boolean terrassaBarbacoa;
 
     MobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
-              boolean terrassaBarbacoa){
+              boolean terrassaBarbacoa){  // El constructor
 
         super(nom_, idAllotjament_, mida, habitacions, placesPersones, 3, 5);
         this.terrassaBarbacoa = terrassaBarbacoa;
     }
 
-    public boolean getTerrassaBarbacoa(){
+    public boolean getTerrassaBarbacoa(){  // Getters i setters
         return terrassaBarbacoa;
     }
 
@@ -19,10 +19,5 @@ public class MobilHome extends Casa {
     }
 
     @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    public boolean correcteFuncionament() { return terrassaBarbacoa; }
+    public boolean correcteFuncionament() { return terrassaBarbacoa; } // Comprova si l'allotjament està operatiu
 }
